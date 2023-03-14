@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock Sun and Moon</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .circle1 {
+            position: absolute;
+            top: 20vh;
+            left: 40vh;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background-image: linear-gradient(to left, #adadad, #151515);
+            animation: circle1 7s infinite;
+            animation-duration: 7s;
+        }
+
+        @keyframes circle1 {
+            0% {
+                top: 20vh;
+                left: 40vh;
+            }
+
+            50% {
+                top: 50vh;
+                left: 40vh;
+            }
+
+            100% {
+                top: 20vh;
+                left: 40vh;
+            }
+
+        }
+
+        .circle2 {
+            position: absolute;
+            top: 20vh;
+            right: 40vh;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background-image: linear-gradient(0.50turn, #f6650a, #f7dab4);
+            animation: circle2 7s infinite;
+            animation-delay: 3s;
+            animation-duration: 7s;
+        }
+
+        @keyframes circle2 {
+
+            0% {
+                top: 10vh;
+
+            }
+
+            50% {
+                top: 40vh;
+
+            }
+
+            100% {
+                top: 10vh;
+
+            }
+
+        }
+
+        .box {
+            width: 50%;
+            backdrop-filter: blur(60px);
+            box-shadow: 0 0 19px 1px rgba(0 0 0 / 35%);
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .in-box {
+            width: 50px;
+            height: 40px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 0 19px 1px rgba(0 0 0 / 35%);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ef563432;
+            font-family: sans-serif;
+            font-weight: bold;
+            margin: 45px 25px;
+            border-radius: 5px;
+        }
+
+        .option {
+            font-size: 35px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+    <div class="box">
+        <div class="in-box" id="hours">12</div>
+        <span class="option">:</span>
+        <div class="in-box" id="minutes">00</div>
+        <span class="option">:</span>
+        <div class="in-box" id="seconds">00</div>
+        <div class="in-box" id="ampm">AM</div>
+
+
+    </div>
+
+    <script>
+        let hours = document.getElementById('hours')
+        let minutes = document.getElementById('minutes')
+        let seconds = document.getElementById('seconds')
+        let ampm = document.getElementById('ampm')
+
+        setInterval(() => {
+            let TodayDate = new Date();
+            let hr = TodayDate.getHours();
+            let min = TodayDate.getMinutes();
+            let sec = TodayDate.getSeconds();
+
+            if (hr < 12) {
+                ampm.innerHTML = 'AM'
+            }
+            else {
+                ampm.innerHTML = 'PM'
+            }
+
+            if (hr > 12) {
+                hr = hr - 12
+
+            }
+            if (hr == '0') {
+                hr = hr - 12
+
+            }
+
+            if (hr < 10) {
+                hr = '0' + hr
+
+            } if (min < 10) {
+                min = '0' + min
+
+            } if (sec < 10) {
+                sec = '0' + sec
+
+            }
+
+            hours.innerHTML = hr
+            minutes.innerHTML = min
+            seconds.innerHTML = sec
+
+
+        })
+    </script>
+
+</body>
+
+</html>
